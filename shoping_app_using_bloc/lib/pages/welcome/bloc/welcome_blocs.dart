@@ -1,43 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shoping_app_using_bloc/pages/welcome/bloc/welcome_events.dart';
+import 'package:shoping_app_using_bloc/pages/welcome/bloc/welcome_states.dart';
 
-class WelcomePage extends StatefulWidget {
-  const WelcomePage({super.key});
-
-  @override
-  State<WelcomePage> createState() => _WelcomePageState();
-}
-
-class _WelcomePageState extends State<WelcomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        body: Container(
-          width: 375.w,
-          child: Stack(
-            children: [
-              PageView(
-                children: [
-                  Column(
-                    children: [
-                      SizedBox(
-                        width: 345.w,
-                        height: 345.w,
-                        child: Text('image1'),
-                      )
-                    ],
-                  )
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
+class WelcomeBlocs extends Bloc<WelcomeEvents, WelcomeStates> {
+  WelcomeBlocs() : super(WelcomeStates()) {
+    on<WelcomeEvents>((event, emit) {
+      emit(WelcomeStates(pageIndex: state.pageIndex));
+    });
   }
 }
